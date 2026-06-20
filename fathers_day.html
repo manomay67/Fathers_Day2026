@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day! 💙</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c1445, #1a237e, #0d47a1);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        /* Floating Hearts & Stars Background */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(720deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle particles */
+        .sparkle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: gold;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .crown {
+            font-size: 80px;
+            animation: crownBounce 2s ease-in-out infinite, crownGlow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px gold);
+            margin-bottom: 10px;
+        }
+
+        @keyframes crownBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes crownGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px gold); }
+            50% { filter: drop-shadow(0 0 40px gold) drop-shadow(0 0 60px rgba(255,215,0,0.5)); }
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700, #fff, #FFD700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite, fadeInUp 1.5s ease-out;
+            text-shadow: none;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #90CAF9;
+            animation: fadeInUp 1.5s ease-out 0.3s both;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #B3E5FC;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: fadeInUp 1.5s ease-out 0.6s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #FFD700;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cards Section */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 300px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.6s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #FFD700;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .card p {
+            color: #B3E5FC;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: rgba(255, 215, 0, 0.05);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .quote-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s ease;
+        }
+
+        .quote-box.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .quote-mark {
+            font-size: 80px;
+            color: #FFD700;
+            font-family: 'Dancing Script', cursive;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #E3F2FD;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .quote-author {
+            color: #FFD700;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, #FFD700, #FFD700, transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+            transform: translateX(-50px);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(50px);
+        }
+
+        .timeline-item.visible:nth-child(odd),
+        .timeline-item.visible:nth-child(even) {
+            transform: translateX(0);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 0 30px;
+        }
+
+        .timeline-content h3 {
+            color: #FFD700;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            color: #B3E5FC;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.3); }
+        }
+
+        /* Message Section */
+        .message-section {
+            text-align: center;
+        }
+
+        .message-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+            position: relative;
+        }
+
+        .message-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message-card::before,
+        .message-card::after {
+            content: '💛';
+            position: absolute;
+            font-size: 30px;
+            animation: heartFloat 3s ease-in-out infinite;
+        }
+
+        .message-card::before {
+            top: -15px;
+            left: 30px;
+        }
+
+        .message-card::after {
+            bottom: -15px;
+            right: 30px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(10deg); }
+        }
+
+        .message-card .dad-emoji {
+            font-size: 70px;
+            display: block;
+            margin-bottom: 20px;
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        .message-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .message-card p {
+            color: #E3F2FD;
+            line-height: 2;
+            font-size: 1.1rem;
+        }
+
+        /* Love Button */
+        .love-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 50px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #1a237e;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .love-btn:hover::before {
+            left: 100%;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .love-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 1000;
+            animation: confettiFall linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+            color: #64B5F6;
+            font-size: 0.9rem;
+        }
+
+        .footer .hearts {
+            font-size: 24px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.2); }
+            60% { transform: scale(1); }
+        }
+
+        /* Fireworks */
+        .firework {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .firework-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: fireworkExplode 1.5s ease-out forwards;
+        }
+
+        @keyframes fireworkExplode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+                max-width: 350px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+            }
+
+            .timeline-item:nth-child(odd) {
+                transform: translateX(-30px);
+            }
+
+            .timeline-item:nth-child(even) {
+                transform: translateX(-30px);
+            }
+
+            .timeline-dot {
+                flex-shrink: 0;
+            }
+
+            .timeline-content {
+                margin: 0 15px;
+            }
+
+            .quote-text {
+                font-size: 1.5rem;
+            }
+
+            .message-card {
+                padding: 35px 25px;
+            }
+
+            .message-card h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <!-- Sparkles -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="crown">👑</div>
+        <h1>Happy Father's Day!</h1>
+        <h2>To the World's Greatest Dad</h2>
+        <p class="hero-subtitle">
+            Thank you for being our rock, our guide, and our hero.
+            Today, we celebrate YOU and everything you mean to us. 💙
+        </p>
+        <div class="scroll-indicator" onclick="document.querySelector('.qualities').scrollIntoView({behavior: 'smooth'})">
+            ⬇️
+        </div>
+    </section>
+
+    <!-- Qualities Section -->
+    <section class="section qualities">
+        <h2 class="section-title" data-animate>Why Dad is the Best 🏆</h2>
+        <div class="cards-container">
+            <div class="card" data-animate data-delay="0">
+                <span class="card-icon">🦸‍♂️</span>
+                <h3>Our Superhero</h3>
+                <p>You've always been our protector and champion. No cape needed — your love is your superpower!</p>
+            </div>
+            <div class="card" data-animate data-delay="200">
+                <span class="card-icon">🧭</span>
+                <h3>Our Guide</h3>
+                <p>Through every storm, you've shown us the way. Your wisdom lights our path in life.</p>
+            </div>
+            <div class="card" data-animate data-delay="400">
+                <span class="card-icon">❤️</span>
+                <h3>Our Heart</h3>
+                <p>Your unconditional love makes everything better. You fill our lives with warmth and joy.</p>
+            </div>
+            <div class="card" data-animate data-delay="600">
+                <span class="card-icon">😂</span>
+                <h3>Best Joke Teller</h3>
+                <p>Your dad jokes may make us groan, but honestly? They're the highlight of our day!</p>
+            </div>
+            <div class="card" data-animate data-delay="800">
+                <span class="card-icon">💪</span>
+                <h3>Our Strength</h3>
+                <p>When we feel weak, you lift us up. Your strength inspires us to be better every day.</p>
+            </div>
+            <div class="card" data-animate data-delay="1000">
+                <span class="card-icon">🌟</span>
+                <h3>Our Star</h3>
+                <p>You shine bright in our lives. You make the ordinary extraordinary with your presence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="section quote-section">
+        <h2 class="section-title" data-animate>Words of Love 💬</h2>
+        <div class="quote-box" data-animate>
+            <div class="quote-mark">"</div>
+            <p class="quote-text">A father is neither an anchor to hold us back nor a sail to take us there, but a guiding light whose love shows us the way.</p>
+            <p class="quote-author">— Unknown</p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section">
+        <h2 class="section-title" data-animate>Thank You For... 🙏</h2>
+        <div class="timeline">
+            <div class="timeline-item" data-animate>
+                <div class="timeline-content">
+                    <h3>🌅 Early Mornings</h3>
+                    <p>For waking up early to make us breakfast and getting us ready for school with a smile.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" style="visibility: hidden;"></div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-content">
+                    <h3>📚 Life Lessons</h3>
+                    <p>For teaching us right from wrong, and showing us that integrity matters more than anything.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" style="visibility: hidden;"></div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-content">
+                    <h3>🤗 Warm Hugs</h3>
+                    <p>For those bear hugs that make every problem disappear. The safest place in the world.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" style="visibility: hidden;"></div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-content">
+                    <h3>🎯 Believing in Us</h3>
+                    <p>For never giving up on us, even when we gave up on ourselves. Your faith keeps us going.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" style="visibility: hidden;"></div>
+            </div>
+            <div class="timeline-item" data-animate>
+                <div class="timeline-content">
+                    <h3>♾️ Endless Love</h3>
+                    <p>For loving us unconditionally, through every high and low. We are who we are because of you.</p>
+                </div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" style="visibility: hidden;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Message Section -->
+    <section class="section message-section">
+        <h2 class="section-title" data-animate>A Message For You, Dad 💌</h2>
+        <div class="message-card" data-animate>
+            <span class="dad-emoji">👨‍👧‍👦</span>
+            <h2>We Love You, Dad!</h2>
+            <p>
+                Dear Dad,<br><br>
+                Words can never express how grateful we are for everything you do.
+                You work tirelessly to give us the best life, and you never ask for anything in return.
+                Your sacrifices don't go unnoticed — they are felt deeply in our hearts every single day.<br><br>
+                You are our first hero, our forever friend, and the greatest man we know.
+                Thank you for being YOU.<br><br>
+                Happy Father's Day! 🎉💙
+            </p>
+            <button class="love-btn" onclick="launchCelebration()">
+                🎉 Celebrate Dad! 🎉
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="hearts">💙💛💙💛💙</div>
+        <p style="margin-top: 10px;">Made with all our love for the best Dad ever</p>
+        <p style="margin-top: 5px;">Happy Father's Day 2025 ✨</p>
+    </footer>
+
+    <script>
+        // Create floating background elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const emojis = ['⭐', '💙', '✨', '🌟', '💛', '👔', '🏆', '🎉', '💫', '🤍'];
+
+            for (let i = 0; i < 30; i++) {
+                const elem = document.createElement('div');
+                elem.className = 'float-item';
+                elem.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                elem.style.left = Math.random() * 100 + '%';
+                elem.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                elem.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                elem.style.animationDelay = (Math.random() * 15) + 's';
+                container.appendChild(elem);
+            }
+        }
+
+        // Create sparkles
+        function createSparkles() {
+            const container = document.getElementById('sparkleContainer');
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        // Scroll animation observer
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, parseInt(delay));
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Confetti launcher
+        function createConfetti() {
+            const colors = ['#FFD700', '#FF6B6B', '#4FC3F7', '#81C784', '#BA68C8', '#FFB74D', '#F06292', '#64B5F6'];
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-piece';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        // Firework effect
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF6B6B', '#4FC3F7', '#81C784', '#BA68C8', '#FFB74D'];
+            const container = document.createElement('div');
+            container.className = 'firework';
+            container.style.left = x + 'px';
+            container.style.top = y + 'px';
+            document.body.appendChild(container);
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                const angle = (i / 30) * Math.PI * 2;
+                const distance = Math.random() * 100 + 50;
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+                container.appendChild(particle);
+            }
+
+            setTimeout(() => container.remove(), 1500);
+        }
+
+        // Celebration function
+        function launchCelebration() {
+            createConfetti();
+
+            // Multiple fireworks
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createFirework(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight * 0.5
+                    );
+                }, i * 400);
+            }
+
+            // More confetti waves
+            setTimeout(createConfetti, 1500);
+            setTimeout(() => {
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        createFirework(
+                            Math.random() * window.innerWidth,
+                            Math.random() * window.innerHeight * 0.5
+                        );
+                    }, i * 300);
+                }
+            }, 2000);
+        }
+
+        // Mouse trail sparkle effect
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.92) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.zIndex = '9999';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.background = Math.random() > 0.5 ? 'gold' : '#4FC3F7';
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        });
+
+        // Initialize everything
+        createFloatingElements();
+        createSparkles();
+        initScrollAnimations();
+
+        // Auto celebration on page load after a delay
+        setTimeout(() => {
+            createFirework(window.innerWidth / 2, window.innerHeight / 3);
+        }, 2000);
+    </script>
+
+</body>
+</html>
